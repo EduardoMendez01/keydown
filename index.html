@@ -15,6 +15,7 @@
         var super_y = 100;
         const size = 50; 
         var direction = ' ';
+        var speed = 5;
 
 
     document.addEventListener('keypress', function(e) {
@@ -22,21 +23,21 @@
             case 'w': 
                  direction = 'up';
                  break;
-             case's': 
+            case's': 
                  direction = 'down';
                  break;
-             case 'a': 
+            case 'a': 
                  direction = 'left';
                  break;
-           case 'd': 
+            case 'd': 
                direction = 'right';
                break;
+
+            case 'p': 
+                speed += 1;
+                break;
         }
 
-       
-
-        //paint(); 
-        
     });
 
 
@@ -44,21 +45,18 @@
 
         switch (direction) {
             case 'up': 
-                super_y -= 10;
-                
+                super_y -= speed;
                 break;
             case 'down': 
-                super_y += 10;
-                
+                super_y += speed;
                 break;
             case 'left': 
-                super_x -= 10;
-                
+                super_x -= speed;
                 break;
             case 'right': 
-                super_x += 10;
-                
+                super_x += speed;
                 break;
+
         }
         if (super_x + size < 0) { 
             super_x = canvas.width;
@@ -83,22 +81,6 @@
         requestAnimationFrame(paint);
     }
         requestAnimationFrame(paint);
-
-
-
-    
-    // case 'w': 
-    //             direction = 'up';
-    //             break;
-    //         case's': 
-    //             direction = 'down';
-    //             break;
-    //         case 'a': 
-    //             direction = 'left';
-    //             break;
-    //         case 'd': 
-    //             direction = 'right';
-    //             break;
 
 
 
