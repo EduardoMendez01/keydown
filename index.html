@@ -14,35 +14,52 @@
         var super_x = 100;
         var super_y = 100;
         const size = 50; 
+        var direction = ' ';
 
-    function drawSquare() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        ctx.fillStyle = "rgba(51, 128, 255, 0.9)";
-        ctx.fillRect(super_x, super_y, size, size); 
-    }
 
-    drawSquare();
-
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keypress', function(e) {
         switch(e.key) {
             case 'w': 
-                super_y -= 10;
-                console.log(e)
-                break;
-            case 's': 
-                super_y += 10;
-                console.log(e)
-                break;
-            case 'a': 
-                super_x -= 10;
-                console.log(e)
-                break;
-            case 'd': 
-                super_x += 10;
-                console.log(e)
-                break;
+                 direction = 'up';
+                 break;
+             case's': 
+                 direction = 'down';
+                 break;
+             case 'a': 
+                 direction = 'left';
+                 break;
+           case 'd': 
+               direction = 'right';
+               break;
         }
 
+       
+
+        //paint(); 
+        
+    });
+
+
+    function update() {
+
+        switch (direction) {
+            case 'up': 
+                super_y -= 10;
+                
+                break;
+            case 'down': 
+                super_y += 10;
+                
+                break;
+            case 'left': 
+                super_x -= 10;
+                
+                break;
+            case 'right': 
+                super_x += 10;
+                
+                break;
+        }
         if (super_x + size < 0) { 
             super_x = canvas.width;
         } else if (super_x > canvas.width) { 
@@ -54,13 +71,37 @@
         } else if (super_y > canvas.height) { 
             super_y = -size;
         }
+        
+    }
 
-        drawSquare(); 
-    });
+    function paint() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        ctx.fillStyle = "rgba(51, 128, 255, 0.9)";
+        ctx.fillRect(super_x, super_y, size, size); 
+
+        update();
+        requestAnimationFrame(paint);
+    }
+        requestAnimationFrame(paint);
 
 
 
     
+    // case 'w': 
+    //             direction = 'up';
+    //             break;
+    //         case's': 
+    //             direction = 'down';
+    //             break;
+    //         case 'a': 
+    //             direction = 'left';
+    //             break;
+    //         case 'd': 
+    //             direction = 'right';
+    //             break;
+
+
+
 
 
         /*
